@@ -2,6 +2,8 @@
   (:require [clojure.test :refer :all]
             [fc-interview.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest multiplication-table-test
+  (testing "return a multiplication table"
+    (is (= "x 0
+0 0"
+           (multiplication-table (range 1))))))

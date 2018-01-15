@@ -1,7 +1,13 @@
 (ns fc-interview.core
   (:gen-class))
 
+(defn multiplication-table
+  "Return a multiplication table."
+  [multiplicands]
+  "x 0
+0 0")
+
 (defn -main
-  "I don't do a whole lot ... yet."
+  "Print out a multiplication table."
   [& args]
-  (println "Hello, World!"))
+  (println (multiplication-table (range 1))))
