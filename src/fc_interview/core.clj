@@ -9,21 +9,31 @@
                         multiplicands)]
     (count (str (* largest largest)))))
 
+(defn- format-helper
+  [spaces digit]
+  (format (str "%" (inc spaces) "d")
+          digit))
+
 (defn multiplication-table
   "Return a multiplication table given a list of multiplicands."
   [multiplicands]
-  (reduce (fn [acc row]
-            (reduce (fn [acc column]
-                      ;; Note: I am duplicating multiplication calls,
-                      ;; except when `(= row column)`. However, I
-                      ;; foresee prime generation as the culprit which
-                      ;; will need optimization.
-                      (str acc " " (* row column)))
-                    (str acc "\n" row)
-                    multiplicands))
-          (str "x " (clojure.string/join " "
-                                         multiplicands))
-          multiplicands))
+  (let [spaces (space-count multiplicands)]
+    (reduce (fn [row-acc row]
+              (reduce (fn [column-acc column]
+                        (str column-acc
+                             ;; Note: I am duplicating multiplication
+                             ;; calls, except when `(= row
+                             ;; column)`. However, I foresee prime
+                             ;; generation as the culprit which will
+                             ;; need optimization.
+                             (format-helper spaces (* row column))))
+                      (str row-acc "\n" row)
+                      multiplicands))
+            (reduce (fn [acc x]
+                      (str acc (format-helper spaces x)))
+                    "x"
+                    multiplicands)
+            multiplicands)))
 
 (defn -main
   "Print out a multiplication table."
