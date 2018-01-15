@@ -28,6 +28,8 @@ No options are accepted.
 
 - Consider cases where we want N primes.
 
+  When N primes are desired, change the argument passed to `primes`.
+
 ## License
 
 Copyright © 2018 Matthew Batema

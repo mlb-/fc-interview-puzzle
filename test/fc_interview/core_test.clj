@@ -32,3 +32,7 @@
                (.split "\n")
                (->> (drop 10)
                     (clojure.string/join "\n")))))))
+
+(deftest prime-test
+  (is (= [2 3 5 7 11 13 17 19 23 29 31]
+         (primes 11))))
