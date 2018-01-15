@@ -51,10 +51,12 @@
 29  58  87 145 203 319 377 493 551 667 841"
          (multiplication-table (primes 10)))))
 
-(deftest erastothenes-test
+(deftest eratosthenes-test
   (is (= [2]
          (take 1 (lazy-eratosthenes))))
   (is (= [2 3]
          (take 2 (lazy-eratosthenes))))
   (is (= [2 3 5 7]
-         (take 4 (lazy-eratosthenes)))))
+         (take 4 (lazy-eratosthenes))))
+  (is (= [2 3 5 7 11]
+         (take 5 (lazy-eratosthenes)))))

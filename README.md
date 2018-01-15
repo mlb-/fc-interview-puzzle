@@ -26,6 +26,10 @@ No options are accepted.
   tables (in hundreds or greater) due not to duplication of
   multiplication operations, but for inefficient string operations.
 
+  Also, in choosing to use the Sieve of Eratosthenes, as primes are
+  discovered, memory usage will increase. However, this reduces CPU
+  usage by avoiding any division operations.
+
 - Consider cases where we want N primes.
 
   When N primes are desired, change the argument passed to `primes`.

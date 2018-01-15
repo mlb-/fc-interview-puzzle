@@ -46,16 +46,37 @@
 
 (defn lazy-eratosthenes-helper
   "Implement a lazily evaluated version of Eratosthenes sieve."
-  [candidate]
-  (cons candidate
-        (lazy-seq (lazy-eratosthenes-helper (+ 2 candidate)))))
+  [sieve candidate]
+  ;; See if the sieve marked `candidate` as a prime multiple.
+  (if-let [prime (get sieve candidate)]
+    ;; If it is, prune `candidate` from `sieve` (as `candidate` is
+    ;; always increasing) and mark the next odd multiple.
+    ;; Simultaneously, see if the next odd value of `candidate` is a
+    ;; prime.
+    (let [new-sieve (-> sieve
+                        (dissoc candidate)
+                        (assoc (+ candidate
+                                  prime
+                                  prime)
+                               prime))]
+      (recur new-sieve
+             (+ 2 candidate)))
+    ;; Otherwise, `candidate` is a prime number.
+    (let [new-sieve (assoc sieve
+                           ;; Skip ahead to the next odd multiple of
+                           ;; this prime.
+                           (* 3 candidate)
+                           candidate)]
+      (cons candidate
+            (lazy-seq (lazy-eratosthenes-helper new-sieve
+                                                (+ 2 candidate)))))))
 
 (defn lazy-eratosthenes
   "Public interface to `lazy-eratosthenes-helper`."
   []
   ;; Hard code the only even prime to reduce the helper's logic.
   (cons 2
-        (lazy-seq (lazy-eratosthenes-helper 3))))
+        (lazy-seq (lazy-eratosthenes-helper {} 3))))
 
 (defn primes
   [n]
