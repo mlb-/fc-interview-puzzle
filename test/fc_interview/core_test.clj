@@ -53,4 +53,6 @@
 
 (deftest erastothenes-test
   (is (= [2]
-         (take 1 (lazy-eratosthenes)))))
+         (take 1 (lazy-eratosthenes))))
+  (is (= [2 3]
+         (take 2 (lazy-eratosthenes)))))

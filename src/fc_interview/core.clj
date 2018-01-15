@@ -44,11 +44,18 @@
                     multiplicands)
             multiplicands)))
 
-(defn lazy-eratosthenes
+(defn lazy-eratosthenes-helper
   "Implement a lazily evaluated version of Eratosthenes sieve."
+  [candidate]
+  (cons candidate
+        (lazy-seq (lazy-eratosthenes-helper 3))))
+
+(defn lazy-eratosthenes
+  "Public interface to `lazy-eratosthenes-helper`."
   []
+  ;; Hard code the only even prime to reduce the helper's logic.
   (cons 2
-        (lazy-seq (lazy-eratosthenes))))
+        (lazy-seq (lazy-eratosthenes-helper 3))))
 
 (defn primes
   [n]
