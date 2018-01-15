@@ -27,11 +27,20 @@
                              ;; generation as the culprit which will
                              ;; need optimization.
                              (format-helper spaces (* row column))))
-                      (str row-acc "\n" row)
+                      (str row-acc
+                           "\n"
+                           ;; Left align the column value.
+                           (format (str "%-"
+                                        (max 1 (dec spaces))
+                                        "d")
+                                   row))
                       multiplicands))
             (reduce (fn [acc x]
                       (str acc (format-helper spaces x)))
-                    "x"
+                    (format (str "%-"
+                                 (max 1 (dec spaces))
+                                 "s")
+                            "x")
                     multiplicands)
             multiplicands)))
 

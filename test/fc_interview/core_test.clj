@@ -24,4 +24,11 @@
 2  0  2  4  6  8
 3  0  3  6  9 12
 4  0  4  8 12 16"
-           (multiplication-table (range 5))))))
+           (multiplication-table (range 5))))
+    (is (= "9    0   9  18  27  36  45  54  63  72  81  90
+10   0  10  20  30  40  50  60  70  80  90 100"
+           (-> (range 11)
+               multiplication-table
+               (.split "\n")
+               (->> (drop 10)
+                    (clojure.string/join "\n")))))))
