@@ -21,6 +21,11 @@ No options are accepted.
   majority of the time spent is due to JVM/Clojure startup.
 
 - How does it scale?
+
+  There is a nested `reduce`, which will scale poorly for larger
+  tables (in hundreds or greater) due not to duplication of
+  multiplication operations, but for inefficient string operations.
+
 - Consider cases where we want N primes.
 
 ## License
