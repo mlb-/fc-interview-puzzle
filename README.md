@@ -1,36 +1,31 @@
 # fc-interview
 
-FIXME: description
-
-## Installation
-
-Download from http://example.com/FIXME.
+Funding Circle coding challenge
 
 ## Usage
 
-FIXME: explanation
+To run:
 
-    $ java -jar fc-interview-0.1.0-standalone.jar [args]
+    $ lein run
 
 ## Options
 
-FIXME: listing of options this app accepts.
+No options are accepted.
 
-## Examples
+### Notes
 
-...
+- Consider complexity.
+- How fast does your code run?
 
-### Bugs
+  This code takes about 20 seconds to run on my laptop, but the
+  majority of the time spent is due to JVM/Clojure startup.
 
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+- How does it scale?
+- Consider cases where we want N primes.
 
 ## License
 
-Copyright © 2018 FIXME
+Copyright © 2018 Matthew Batema
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
