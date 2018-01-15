@@ -48,7 +48,7 @@
   "Implement a lazily evaluated version of Eratosthenes sieve."
   [candidate]
   (cons candidate
-        (lazy-seq (lazy-eratosthenes-helper 3))))
+        (lazy-seq (lazy-eratosthenes-helper (+ 2 candidate)))))
 
 (defn lazy-eratosthenes
   "Public interface to `lazy-eratosthenes-helper`."

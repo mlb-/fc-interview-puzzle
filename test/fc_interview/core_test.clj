@@ -55,4 +55,6 @@
   (is (= [2]
          (take 1 (lazy-eratosthenes))))
   (is (= [2 3]
-         (take 2 (lazy-eratosthenes)))))
+         (take 2 (lazy-eratosthenes))))
+  (is (= [2 3 5 7]
+         (take 4 (lazy-eratosthenes)))))
