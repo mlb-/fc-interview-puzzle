@@ -44,6 +44,12 @@
                     multiplicands)
             multiplicands)))
 
+(defn lazy-eratosthenes
+  "Implement a lazily evaluated version of Eratosthenes sieve."
+  []
+  (cons 2
+        (lazy-seq (lazy-eratosthenes))))
+
 (defn primes
   [n]
   (take n [2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53]))

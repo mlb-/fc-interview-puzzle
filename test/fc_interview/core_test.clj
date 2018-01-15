@@ -50,3 +50,7 @@
 23  46  69 115 161 253 299 391 437 529 667
 29  58  87 145 203 319 377 493 551 667 841"
          (multiplication-table (primes 10)))))
+
+(deftest erastothenes-test
+  (is (= [2]
+         (take 1 (lazy-eratosthenes)))))
