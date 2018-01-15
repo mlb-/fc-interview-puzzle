@@ -1,6 +1,14 @@
 (ns fc-interview.core
   (:gen-class))
 
+(defn space-count
+  "Determine how many spaces are necessary to pretty print a
+  multiplication table."
+  [multiplicands]
+  (let [largest (reduce max
+                        multiplicands)]
+    (count (str (* largest largest)))))
+
 (defn multiplication-table
   "Return a multiplication table given a list of multiplicands."
   [multiplicands]
