@@ -50,14 +50,16 @@
   ;; See if the sieve marked `candidate` as a prime multiple.
   (if-let [prime (get sieve candidate)]
     ;; If it is, prune `candidate` from `sieve` (as `candidate` is
-    ;; always increasing) and mark the next odd multiple.
-    ;; Simultaneously, see if the next odd value of `candidate` is a
-    ;; prime.
-    (let [new-sieve (-> sieve
+    ;; always increasing) and mark the next odd multiple not already
+    ;; marked by another prime. Simultaneously, see if the next odd
+    ;; value of `candidate` is a prime.
+    (let [next-multiple (->> (iterate (partial + prime prime)
+                                      candidate)
+                             (remove (partial contains? sieve))
+                             first)
+          new-sieve (-> sieve
                         (dissoc candidate)
-                        (assoc (+ candidate
-                                  prime
-                                  prime)
+                        (assoc next-multiple
                                prime))]
       (recur new-sieve
              (+ 2 candidate)))
